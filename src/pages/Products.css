@@ -1,0 +1,127 @@
+/* ============================================
+   PRODUCTS PAGE COMPONENT STYLES
+   ============================================ */
+
+.products-page {
+  flex: 1;
+  padding: rem 0;
+  background: #f8fafc;
+}
+
+.products-page h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #2d3748;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+  border: 1px solid #e2e8f0;
+}
+
+.filters select,
+.filters input {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: white;
+  min-width: 150px;
+}
+
+.filters select:focus,
+.filters input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem 3rem; /* Added bottom padding to prevent footer touch */
+}
+
+.no-products {
+  text-align: center;
+  padding: 4rem;
+  color: #718096;
+  font-size: 1.1rem;
+}
+
+/* Search loading indicator */
+.search-loading {
+  text-align: center;
+  padding: 1rem;
+  color: #667eea;
+  font-size: 0.9rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  border: 2px solid #e2e8f0 !important;
+  transition: all 0.3s ease;
+}
+
+.clear-filters-btn {
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.clear-filters-btn:hover {
+  background: #c53030;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - PRODUCTS PAGE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 0 0.5rem 2rem; /* Responsive bottom padding */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    padding: 0 1rem 2.5rem; /* Added bottom padding for tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    padding: 0 1rem 3rem; /* Consistent bottom padding for desktop */
+  }
+}

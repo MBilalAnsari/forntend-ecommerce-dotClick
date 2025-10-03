@@ -1,0 +1,502 @@
+/* ============================================
+   CREATE PRODUCT PAGE STYLES
+   ============================================ */
+
+/* Form Styling */
+.create-product-page {
+    padding: 2rem 0;
+    background: #f8fafc;
+    min-height: calc(100vh - 70px);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+}
+
+.page-header h1 {
+    color: #2d3748;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.back-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+}
+
+/* Form Container */
+.product-form {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin: 0 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error-message {
+    background: #fed7d7;
+    color: #e53e3e;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border-left: 4px solid #e53e3e;
+}
+
+/* Form Sections */
+.form-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-section {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.form-section h2 {
+    margin: 0 0 1rem 0;
+    color: #2d3748;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.section-description {
+    color: #718096;
+    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}
+
+/* Form Groups */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    color: #718096;
+    font-size: 0.85rem;
+}
+
+/* Checkbox Groups */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #667eea;
+}
+
+/* Size and Colour Checkboxes - OLD (keeping for reference) */
+.sizes-checkboxes,
+.colours-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.size-checkbox-label,
+.colour-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.size-checkbox-label:hover,
+.colour-checkbox-label:hover {
+    border-color: #667eea;
+    background: #f7fafc;
+}
+
+.size-checkbox-label.selected,
+.colour-checkbox-label.selected {
+    border-color: #667eea;
+    background: #667eea;
+    color: white;
+}
+
+.size-checkbox,
+.colour-checkbox {
+    display: none;
+}
+
+.checkmark {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: transparent;
+    transition: all 0.2s ease;
+}
+
+.size-checkbox-label.selected .checkmark,
+.colour-checkbox-label.selected .checkmark {
+    color: white;
+}
+
+.size-checkbox-label.selected .checkmark::after,
+.colour-checkbox-label.selected .checkmark::after {
+    content: "✓";
+    font-weight: bold;
+}
+
+/* ============================================
+   DROPDOWN COMPONENTS
+   ============================================ */
+
+.dropdown-container {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  padding: 0.4rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #2d3748;
+  transition: all 0.3s ease;
+  min-height: 32px;
+}
+
+.dropdown-toggle:hover {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.dropdown-toggle:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+.dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+  animation: dropdownSlideDown 0.3s ease;
+  padding: 0;
+}
+
+@keyframes dropdownSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  padding: 0.2rem;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+  font-weight: 500;
+  min-height: 20px;
+  background: transparent;
+  width: 100%;
+}
+
+.dropdown-item:hover {
+  background: #f7fafc;
+}
+
+.dropdown-item.selected {
+  background: #667eea;
+  color: white;
+}
+
+.dropdown-checkbox {
+  width: 10px;
+  height: 10px;
+  accent-color: #667eea;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.dropdown-label {
+  flex: 1;
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1.1;
+  text-align: left;
+}
+
+/* ============================================
+   IMAGE PREVIEWS & FORM ELEMENTS
+   ============================================ */
+
+/* Image Previews */
+.image-previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.image-preview-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.image-preview-item img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.preview-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.submit-btn,
+.cancel-btn {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn {
+  background: #48bb78;
+  color: white;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #38a169;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+.submit-btn:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cancel-btn {
+  background: #f8fafc;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+}
+
+.cancel-btn:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+  transform: translateY(-2px);
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 4rem;
+  color: #718096;
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .create-product-page {
+    padding: 1rem 0;
+  }
+
+  .page-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .product-form {
+    margin: 0 1rem;
+    padding: 1.5rem;
+  }
+
+  .form-sections {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .dropdown-grid {
+    gap: 0.2rem;
+  }
+
+  .dropdown-content {
+    max-height: 250px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .form-sections {
+    gap: 1.5rem;
+  }
+
+  .form-row {
+    gap: 0.75rem;
+  }
+}
