@@ -6,7 +6,7 @@ import './Checkout.css'
 
 const Checkout = () => {
   const navigate = useNavigate()
-  const [cart, setCart] = useState(null)
+  const [orderData, setOrderData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [processing, setProcessing] = useState(false)
@@ -14,20 +14,27 @@ const Checkout = () => {
 
   useEffect(() => {
     if (authService.isAuthenticated()) {
-      fetchCart()
+      fetchOrderSummary()
     } else {
       navigate('/login')
     }
   }, [navigate])
 
-  const fetchCart = async () => {
+  const fetchOrderSummary = async () => {
     try {
       setLoading(true)
-      const response = await api.get('/cart')
-      setCart(response.data)
+      setError('')
+
+      // Call the order summary API endpoint
+      const response = await api.post('/checkout')
+
+      if (response.data) {
+        setOrderData(response.data)
+        console.log('Order Summary:', response.data)
+      }
     } catch (err) {
-      setError('Failed to fetch cart')
-      console.error(err)
+      console.error('Order summary error:', err)
+      setError(err.response?.data?.message || 'Failed to fetch order summary')
     } finally {
       setLoading(false)
     }
@@ -37,16 +44,8 @@ const Checkout = () => {
     try {
       setProcessing(true)
 
-      // Create order without payment (demo mode)
-      const orderData = {
-        items: cart.items,
-        totalAmount: cart.totalAmount,
-        paymentMethod: 'demo', // Demo mode - no real payment
-        status: 'confirmed' // Order confirmed immediately
-      }
-
-      // For demo purposes, just show success
-      await new Promise(resolve => setTimeout(resolve, 2000)) // Simulate processing
+      // Simulate order processing (demo mode)
+      await new Promise(resolve => setTimeout(resolve, 2000))
 
       setOrderPlaced(true)
 
@@ -63,7 +62,7 @@ const Checkout = () => {
   if (loading) return <div className="loading">Loading checkout...</div>
   if (error) return <div className="error">{error}</div>
 
-  if (!cart || cart.totalItems === 0) {
+  if (!orderData || orderData.totalItems === 0) {
     return (
       <div className="empty-cart">
         <h2>Your cart is empty</h2>
@@ -101,24 +100,18 @@ const Checkout = () => {
         <div className="order-summary">
           <h2>Order Summary</h2>
 
-          {cart.items.map(item => (
-            <div key={item._id} className="checkout-item">
-              <img
-                src={item.product?.images?.[0] || '/placeholder-product.png'}
-                alt={item.product?.name}
-                className="checkout-item-image"
-              />
-
+          {orderData.orderSummary.map((item, index) => (
+            <div key={index} className="checkout-item">
               <div className="checkout-item-details">
-                <h3>{item.product?.name}</h3>
+                <h3>{item.name}</h3>
                 {item.colour && <p>Color: {item.colour}</p>}
                 {item.size && <p>Size: {item.size}</p>}
                 <p>Quantity: {item.quantity}</p>
-                <p className="item-price">${item.product?.price} each</p>
+                <p className="item-price">${item.price} each</p>
               </div>
 
               <div className="item-total">
-                ${((item.product?.price || 0) * item.quantity).toFixed(2)}
+                ${item.total}
               </div>
             </div>
           ))}
@@ -126,14 +119,14 @@ const Checkout = () => {
           <div className="checkout-total">
             <div className="total-row">
               <span>Subtotal:</span>
-              <span>${cart.totalAmount?.toFixed(2)}</span>
+              <span>${orderData.totalAmount}</span>
             </div>
             <div className="total-row">
               <span>Shipping:</span>
               <span>FREE</span>
             </div>
             <div className="total-row final">
-              <strong>Total: ${cart.totalAmount?.toFixed(2)}</strong>
+              <strong>Total: ${orderData.totalAmount}</strong>
             </div>
           </div>
         </div>
@@ -158,7 +151,7 @@ const Checkout = () => {
               disabled={processing}
               className="place-order-btn"
             >
-              {processing ? 'Placing Order...' : `Place Order - $${cart.totalAmount?.toFixed(2)}`}
+              {processing ? 'Placing Order...' : `Place Order - $${orderData.totalAmount}`}
             </button>
 
             <button
